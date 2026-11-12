@@ -642,6 +642,12 @@ export type Event =
   | V2BillingContractUpdatedEvent
   | V2BillingContractTermCreatedEvent
   | V2BillingContractTermDeletedEvent
+  | V2BillingContractTermPricingOverrideEndedEvent
+  | V2BillingContractTermPricingOverrideStartedEvent
+  | V2BillingContractTermRecurringPriceEndedEvent
+  | V2BillingContractTermRecurringPriceStartedEvent
+  | V2BillingContractTermScheduledFeeServicePeriodEndedEvent
+  | V2BillingContractTermScheduledFeeServicePeriodStartedEvent
   | V2BillingContractTermUpdatedEvent
   | V2BillingLicenseFeeCreatedEvent
   | V2BillingLicenseFeeUpdatedEvent
@@ -733,6 +739,8 @@ export type Event =
   | V2CoreHealthApiLatencyResolvedEvent
   | V2CoreHealthAuthorizationRateDropFiringEvent
   | V2CoreHealthAuthorizationRateDropResolvedEvent
+  | V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent
+  | V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent
   | V2CoreHealthElementsErrorFiringEvent
   | V2CoreHealthElementsErrorResolvedEvent
   | V2CoreHealthEventGenerationFailureResolvedEvent
@@ -1198,6 +1206,12 @@ export type EventNotification =
   | V2BillingContractUpdatedEventNotification
   | V2BillingContractTermCreatedEventNotification
   | V2BillingContractTermDeletedEventNotification
+  | V2BillingContractTermPricingOverrideEndedEventNotification
+  | V2BillingContractTermPricingOverrideStartedEventNotification
+  | V2BillingContractTermRecurringPriceEndedEventNotification
+  | V2BillingContractTermRecurringPriceStartedEventNotification
+  | V2BillingContractTermScheduledFeeServicePeriodEndedEventNotification
+  | V2BillingContractTermScheduledFeeServicePeriodStartedEventNotification
   | V2BillingContractTermUpdatedEventNotification
   | V2BillingLicenseFeeCreatedEventNotification
   | V2BillingLicenseFeeUpdatedEventNotification
@@ -1289,6 +1303,8 @@ export type EventNotification =
   | V2CoreHealthApiLatencyResolvedEventNotification
   | V2CoreHealthAuthorizationRateDropFiringEventNotification
   | V2CoreHealthAuthorizationRateDropResolvedEventNotification
+  | V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEventNotification
+  | V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEventNotification
   | V2CoreHealthElementsErrorFiringEventNotification
   | V2CoreHealthElementsErrorResolvedEventNotification
   | V2CoreHealthEventGenerationFailureResolvedEventNotification
@@ -7441,6 +7457,202 @@ export namespace V2BillingContractTermDeletedEvent {
 }
 
 /**
+ * Occurs when a Contract Term's pricing override period ends.
+ */
+export interface V2BillingContractTermPricingOverrideEndedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.pricing_override_ended';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermPricingOverrideEndedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermPricingOverrideEndedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.pricing_override_ended';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<V2BillingContractTermPricingOverrideEndedEvent>;
+}
+
+export namespace V2BillingContractTermPricingOverrideEndedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
+ * Occurs when a Contract Term's pricing override period starts.
+ */
+export interface V2BillingContractTermPricingOverrideStartedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.pricing_override_started';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermPricingOverrideStartedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermPricingOverrideStartedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.pricing_override_started';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<V2BillingContractTermPricingOverrideStartedEvent>;
+}
+
+export namespace V2BillingContractTermPricingOverrideStartedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
+ * Occurs when a Contract Term's recurring-price period ends.
+ */
+export interface V2BillingContractTermRecurringPriceEndedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.recurring_price_ended';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermRecurringPriceEndedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermRecurringPriceEndedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.recurring_price_ended';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<V2BillingContractTermRecurringPriceEndedEvent>;
+}
+
+export namespace V2BillingContractTermRecurringPriceEndedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
+ * Occurs when a Contract Term's recurring-price period starts.
+ */
+export interface V2BillingContractTermRecurringPriceStartedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.recurring_price_started';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermRecurringPriceStartedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermRecurringPriceStartedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.recurring_price_started';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<V2BillingContractTermRecurringPriceStartedEvent>;
+}
+
+export namespace V2BillingContractTermRecurringPriceStartedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
+ * Occurs when a Contract Term's scheduled-fee service period ends.
+ */
+export interface V2BillingContractTermScheduledFeeServicePeriodEndedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.scheduled_fee_service_period_ended';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermScheduledFeeServicePeriodEndedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermScheduledFeeServicePeriodEndedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.scheduled_fee_service_period_ended';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<
+    V2BillingContractTermScheduledFeeServicePeriodEndedEvent
+  >;
+}
+
+export namespace V2BillingContractTermScheduledFeeServicePeriodEndedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
+ * Occurs when a Contract Term's scheduled-fee service period starts.
+ */
+export interface V2BillingContractTermScheduledFeeServicePeriodStartedEvent
+  extends EventBase {
+  type: 'v2.billing.contract_term.scheduled_fee_service_period_started';
+  // Retrieves data specific to this event.
+  data: V2BillingContractTermScheduledFeeServicePeriodStartedEvent.Data;
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+}
+export interface V2BillingContractTermScheduledFeeServicePeriodStartedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.billing.contract_term.scheduled_fee_service_period_started';
+  // Object containing the reference to API resource relevant to the event.
+  related_object: V2.Core.Events.RelatedObject;
+  // Retrieves the object associated with the event.
+  fetchRelatedObject(): Promise<Billing.ContractTerm>;
+  fetchEvent(): Promise<
+    V2BillingContractTermScheduledFeeServicePeriodStartedEvent
+  >;
+}
+
+export namespace V2BillingContractTermScheduledFeeServicePeriodStartedEvent {
+  export interface Data {
+    /**
+     * The Contract containing this term.
+     */
+    contract: string;
+  }
+}
+
+/**
  * Occurs when a Contract Term is updated.
  */
 export interface V2BillingContractTermUpdatedEvent extends EventBase {
@@ -10469,6 +10681,203 @@ export namespace V2CoreHealthAuthorizationRateDropResolvedEvent {
 
       export namespace Dimension {
         export type Type = 'acquirer' | 'issuer' | OtherString;
+      }
+    }
+  }
+}
+
+/**
+ * Occurs when a custom payment method adapter degraded alert is firing.
+ */
+export interface V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent
+  extends EventBase {
+  type: 'v2.core.health.custom_payment_method_adapter_degraded.firing';
+  // Retrieves data specific to this event.
+  data: V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent.Data;
+}
+export interface V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEventNotification
+  extends EventNotificationBase {
+  type: 'v2.core.health.custom_payment_method_adapter_degraded.firing';
+  fetchEvent(): Promise<
+    V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent
+  >;
+}
+
+export namespace V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent {
+  export interface Data {
+    /**
+     * The alert ID.
+     */
+    alert_id: string;
+
+    /**
+     * The grouping key for the alert.
+     */
+    grouping_key: string;
+
+    /**
+     * The user impact.
+     */
+    impact: Data.Impact;
+
+    /**
+     * The severity of the alert.
+     */
+    severity: Data.Severity;
+
+    /**
+     * The time when impact on the user experience was first detected.
+     */
+    started_at: string;
+
+    /**
+     * A short description of the alert.
+     */
+    summary: string;
+  }
+
+  export namespace Data {
+    export interface Impact {
+      /**
+       * Whether the custom payment method was disabled in Checkout as a result of the degradation. True while the alert is open and false when it is resolved.
+       */
+      custom_payment_method_disabled_from_checkout: boolean;
+
+      /**
+       * The custom payment method type whose adapter is unhealthy.
+       */
+      custom_payment_method_type_details: Impact.CustomPaymentMethodTypeDetails;
+
+      /**
+       * The reason the adapter's health is degraded.
+       */
+      degraded_health_reason: string;
+    }
+
+    export type Severity = 'critical' | 'non_critical' | OtherString;
+
+    export namespace Impact {
+      export interface CustomPaymentMethodTypeDetails {
+        /**
+         * The time when the custom payment method was automatically disabled. Null when it is enabled.
+         */
+        auto_disabled_at?: string;
+
+        /**
+         * The display name of the custom payment method type.
+         */
+        display_name: string;
+
+        /**
+         * The URL of the user's self-hosted adapter endpoint.
+         */
+        reverse_api_url: string;
+
+        /**
+         * The identifier of the custom payment method type (e.g., "cpmt_...").
+         */
+        type: string;
+      }
+    }
+  }
+}
+
+/**
+ * Occurs when a custom payment method adapter degraded alert is resolved.
+ */
+export interface V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent
+  extends EventBase {
+  type: 'v2.core.health.custom_payment_method_adapter_degraded.resolved';
+  // Retrieves data specific to this event.
+  data: V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent.Data;
+}
+export interface V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEventNotification
+  extends EventNotificationBase {
+  type: 'v2.core.health.custom_payment_method_adapter_degraded.resolved';
+  fetchEvent(): Promise<
+    V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent
+  >;
+}
+
+export namespace V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent {
+  export interface Data {
+    /**
+     * The alert ID.
+     */
+    alert_id: string;
+
+    /**
+     * The grouping key for the alert.
+     */
+    grouping_key: string;
+
+    /**
+     * The user impact.
+     */
+    impact: Data.Impact;
+
+    /**
+     * The time when the user experience has returned to expected levels.
+     */
+    resolved_at: string;
+
+    /**
+     * The severity of the alert.
+     */
+    severity: Data.Severity;
+
+    /**
+     * The time when impact on the user experience was first detected.
+     */
+    started_at: string;
+
+    /**
+     * A short description of the alert.
+     */
+    summary: string;
+  }
+
+  export namespace Data {
+    export interface Impact {
+      /**
+       * Whether the custom payment method was disabled in Checkout as a result of the degradation. True while the alert is open and false when it is resolved.
+       */
+      custom_payment_method_disabled_from_checkout: boolean;
+
+      /**
+       * The custom payment method type whose adapter is unhealthy.
+       */
+      custom_payment_method_type_details: Impact.CustomPaymentMethodTypeDetails;
+
+      /**
+       * The reason the adapter's health is degraded.
+       */
+      degraded_health_reason: string;
+    }
+
+    export type Severity = 'critical' | 'non_critical' | OtherString;
+
+    export namespace Impact {
+      export interface CustomPaymentMethodTypeDetails {
+        /**
+         * The time when the custom payment method was automatically disabled. Null when it is enabled.
+         */
+        auto_disabled_at?: string;
+
+        /**
+         * The display name of the custom payment method type.
+         */
+        display_name: string;
+
+        /**
+         * The URL of the user's self-hosted adapter endpoint.
+         */
+        reverse_api_url: string;
+
+        /**
+         * The identifier of the custom payment method type (e.g., "cpmt_...").
+         */
+        type: string;
       }
     }
   }
@@ -16542,6 +16951,12 @@ export declare namespace Events {
     V2BillingContractUpdatedEvent,
     V2BillingContractTermCreatedEvent,
     V2BillingContractTermDeletedEvent,
+    V2BillingContractTermPricingOverrideEndedEvent,
+    V2BillingContractTermPricingOverrideStartedEvent,
+    V2BillingContractTermRecurringPriceEndedEvent,
+    V2BillingContractTermRecurringPriceStartedEvent,
+    V2BillingContractTermScheduledFeeServicePeriodEndedEvent,
+    V2BillingContractTermScheduledFeeServicePeriodStartedEvent,
     V2BillingContractTermUpdatedEvent,
     V2BillingLicenseFeeCreatedEvent,
     V2BillingLicenseFeeUpdatedEvent,
@@ -16633,6 +17048,8 @@ export declare namespace Events {
     V2CoreHealthApiLatencyResolvedEvent,
     V2CoreHealthAuthorizationRateDropFiringEvent,
     V2CoreHealthAuthorizationRateDropResolvedEvent,
+    V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEvent,
+    V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEvent,
     V2CoreHealthElementsErrorFiringEvent,
     V2CoreHealthElementsErrorResolvedEvent,
     V2CoreHealthEventGenerationFailureResolvedEvent,
@@ -17096,6 +17513,12 @@ export declare namespace Events {
     V2BillingContractUpdatedEventNotification,
     V2BillingContractTermCreatedEventNotification,
     V2BillingContractTermDeletedEventNotification,
+    V2BillingContractTermPricingOverrideEndedEventNotification,
+    V2BillingContractTermPricingOverrideStartedEventNotification,
+    V2BillingContractTermRecurringPriceEndedEventNotification,
+    V2BillingContractTermRecurringPriceStartedEventNotification,
+    V2BillingContractTermScheduledFeeServicePeriodEndedEventNotification,
+    V2BillingContractTermScheduledFeeServicePeriodStartedEventNotification,
     V2BillingContractTermUpdatedEventNotification,
     V2BillingLicenseFeeCreatedEventNotification,
     V2BillingLicenseFeeUpdatedEventNotification,
@@ -17187,6 +17610,8 @@ export declare namespace Events {
     V2CoreHealthApiLatencyResolvedEventNotification,
     V2CoreHealthAuthorizationRateDropFiringEventNotification,
     V2CoreHealthAuthorizationRateDropResolvedEventNotification,
+    V2CoreHealthCustomPaymentMethodAdapterDegradedFiringEventNotification,
+    V2CoreHealthCustomPaymentMethodAdapterDegradedResolvedEventNotification,
     V2CoreHealthElementsErrorFiringEventNotification,
     V2CoreHealthElementsErrorResolvedEventNotification,
     V2CoreHealthEventGenerationFailureResolvedEventNotification,
