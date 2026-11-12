@@ -3981,6 +3981,8 @@ export namespace Checkout {
 
     /**
      * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.
+     *
+     * This metadata stays on the Checkout Session and is not copied to the PaymentIntent or Subscription that the session creates. To set metadata on those, use `payment_intent_data.metadata` or `subscription_data.metadata`. See [metadata](https://docs.stripe.com/metadata).
      */
     metadata?: MetadataParam;
 
